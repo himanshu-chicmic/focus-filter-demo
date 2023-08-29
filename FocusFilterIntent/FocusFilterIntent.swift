@@ -1,14 +1,15 @@
-/*
-See LICENSE folder for this sample’s licensing information.
+//
+//  FocusFilterIntentExtension.swift
+//  FocusFilterIntent
+//
+//  Created by Nitin on 8/29/23.
+//
 
-Abstract:
-A Focus filter intent object, which allows Focus filters to configure this app.
-*/
 import OSLog
 import AppIntents
 
-/// - Tag: ExampleFocusFilter
-struct ExampleFocusFilter: SetFocusFilterIntent {
+/// - Tag: FocusFilterIntent
+struct FocusFilterIntent: SetFocusFilterIntent {
     // MARK: - Parameters configurable using Focus filters or Shortcuts.
     
     /// Providing a default value ensures setting this required Boolean value.
@@ -75,8 +76,8 @@ struct ExampleFocusFilter: SetFocusFilterIntent {
     // MARK: - Focus suggestions.
     /// The system uses this to prefill the filter parameters when you choose Settings > Focus > Do Not Disturb (or another Focus)
     /// and then choose Add Filter > Example Chat App.
-    static func suggestedFocusFilters(for context: FocusFilterSuggestionContext) async -> [ExampleFocusFilter] {
-        let workFilter = ExampleFocusFilter()
+    static func suggestedFocusFilters(for context: FocusFilterSuggestionContext) async -> [FocusFilterIntent] {
+        let workFilter = FocusFilterIntent()
         workFilter.alwaysUseDarkMode = true
         workFilter.status = "Currently working"
         workFilter.account = AccountEntity.exampleAccounts["work-account-identifier"]
@@ -96,7 +97,7 @@ struct ExampleFocusFilter: SetFocusFilterIntent {
     }
 }
 
-extension ExampleFocusFilter {
+extension FocusFilterIntent {
     var logger: Logger {
         let subsystem = Bundle.main.bundleIdentifier!
         return Logger(subsystem: subsystem, category: "ExampleFocusFilter")
